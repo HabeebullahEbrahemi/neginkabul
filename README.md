@@ -16,6 +16,7 @@ This is a fully functional **frontend demo** store. It uses:
 - Thank-you page with a generated order id
 - About & Contact pages
 - Responsive, clean design
+- This is new changes that I have made in this file
 
 ## Files
 - `index.html` — Home + featured products
