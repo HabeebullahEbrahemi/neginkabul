@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader('about') + `
+      <section class="container section">
+        <h2>About neginKabul</h2>
+        <p class="muted">We bring Afghan craftsmanship to the world — from handwoven rugs and jewelry to gourmet treats.</p>
+      </section>
+    ` + renderFooter();
+  </script>
+</body>
+</html>

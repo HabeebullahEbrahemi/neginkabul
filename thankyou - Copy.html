@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    const app = document.getElementById('app');
+    const params = new URLSearchParams(location.search);
+    const orderId = params.get('orderId') || "N/A";
+    app.innerHTML = renderHeader() + `
+      <section class="container section">
+        <div class="card p" style="text-align:center;padding:30px">
+          <h2>Thank you for your order!</h2>
+          <p class="muted">Your order ID is <b>#${orderId}</b>. We have sent a confirmation to your email.</p>
+          <div style="margin-top:12px">
+            <a href="./products.html" class="btn">Continue Shopping</a>
+          </div>
+        </div>
+      </section>
+    ` + renderFooter();
+  </script>
+</body>
+</html>

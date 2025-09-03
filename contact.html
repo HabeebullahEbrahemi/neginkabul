@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader('contact') + `
+      <section class="container section">
+        <h2>Contact Us</h2>
+        <p class="muted">Have a question? Send us a message and we’ll get back to you.</p>
+        <form onsubmit="event.preventDefault(); alert('Thanks! We will reply shortly.')" class="card p" style="padding:16px">
+          <label>Name</label>
+          <input class="input" required placeholder="Your name">
+          <label>Email</label>
+          <input class="input" type="email" required placeholder="you@example.com">
+          <label>Message</label>
+          <textarea class="input" rows="4" required placeholder="How can we help?"></textarea>
+          <button class="btn accent" style="margin-top:10px">Send</button>
+        </form>
+      </section>
+    ` + renderFooter();
+  </script>
+</body>
+</html>

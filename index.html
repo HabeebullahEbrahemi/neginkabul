@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>neginKabul — Afghan Goods</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    import { loadProducts, addToCart, formatCurrency } from './js/store.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader('home') + `
+      <section class="hero container">
+        <div>
+          <h1 class="title">Beautiful Afghan Goods, Delivered.</h1>
+          <p class="lead">Discover handwoven rugs, artisan jewelry, and premium gourmet products — all in one place.</p>
+          <div style="margin-top:12px">
+            <a href="./products.html" class="btn accent">Shop Products</a>
+            <a href="./about.html" class="btn secondary">Learn More</a>
+          </div>
+        </div>
+        <div class="card"><img src="./assets/rug.jpg" alt="hero"/></div>
+      </section>
+      <section class="container section">
+        <h2>Featured Products</h2>
+        <div id="grid" class="grid" style="margin-top:12px"></div>
+      </section>
+    ` + renderFooter();
+
+    const grid = document.getElementById('grid');
+    const products = await loadProducts();
+    products.slice(0,3).forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <img loading="lazy" src="${p.image}" alt="${p.name}">
+        <div class="p">
+          <div class="badge">${p.category}</div>
+          <h3>${p.name}</h3>
+          <div class="space-between">
+            <span class="price">${formatCurrency(p.price, p.currency)}</span>
+            <a class="btn" href="./product.html?id=${p.id}">View</a>
+          </div>
+        </div>`;
+      grid.appendChild(el);
+    });
+  </script>
+</body>
+</html>

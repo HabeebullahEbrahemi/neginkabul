@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Kabul Handwoven Rug",
+    "price": 299.99,
+    "currency": "USD",
+    "stock": 8,
+    "image": "assets/rug.jpg",
+    "category": "Home Decor",
+    "description": "Authentic handwoven rug with traditional Afghan patterns."
+  },
+  {
+    "id": 2,
+    "name": "Saffron Premium (5g)",
+    "price": 24.5,
+    "currency": "USD",
+    "stock": 40,
+    "image": "assets/saffron.jpg",
+    "category": "Gourmet",
+    "description": "High-grade Afghan saffron known for its aroma and deep color."
+  },
+  {
+    "id": 3,
+    "name": "Blue Lapis Necklace",
+    "price": 79.0,
+    "currency": "USD",
+    "stock": 15,
+    "image": "assets/lapis.jpg",
+    "category": "Jewelry",
+    "description": "Handcrafted necklace featuring Afghan Lapis Lazuli stones."
+  },
+  {
+    "id": 4,
+    "name": "Pistachios (500g)",
+    "price": 14.75,
+    "currency": "USD",
+    "stock": 50,
+    "image": "assets/pistachios.jpg",
+    "category": "Gourmet",
+    "description": "Crisp, fresh pistachios sourced from Afghan orchards."
+  },
+  {
+    "id": 5,
+    "name": "Kabul Handwoven Rug",
+    "price": 199.99,
+    "currency": "USD",
+    "stock": 8,
+    "image": "assets/rug.jpg",
+    "category": "Home Decor",
+    "description": "Authentic handwoven rug with traditional Afghan patterns."
+  },
+  {
+    "id": 6,
+    "name": "Saffron Premium (5g)",
+    "price": 24.5,
+    "currency": "USD",
+    "stock": 40,
+    "image": "assets/saffron.jpg",
+    "category": "Gourmet",
+    "description": "High-grade Afghan saffron known for its aroma and deep color."
+  },
+  {
+    "id": 7,
+    "name": "Blue Lapis Necklace",
+    "price": 79.0,
+    "currency": "USD",
+    "stock": 15,
+    "image": "assets/lapis.jpg",
+    "category": "Jewelry",
+    "description": "Handcrafted necklace featuring Afghan Lapis Lazuli stones."
+  },
+  {
+    "id": 8,
+    "name": "Pistachios (500g)",
+    "price": 14.75,
+    "currency": "USD",
+    "stock": 50,
+    "image": "assets/pistachios.jpg",
+    "category": "Gourmet",
+    "description": "Crisp, fresh pistachios sourced from Afghan orchards."
+  }
+]

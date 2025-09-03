@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    import { loadProducts, addToCart, formatCurrency } from './js/store.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader('products') + `
+      <section class="container section">
+        <div class="space-between">
+          <h2>All Products</h2>
+          <a href="./cart.html" class="btn">Go to Cart</a>
+        </div>
+        <div class="grid" id="grid" style="margin-top:12px"></div>
+      </section>
+    ` + renderFooter();
+
+    const products = await loadProducts();
+    const grid = document.getElementById('grid');
+    products.forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <img src="${p.image}" alt="${p.name}">
+        <div class="p">
+          <div class="badge">${p.category}</div>
+          <h3>${p.name}</h3>
+          <p class="muted">${p.description}</p>
+          <div class="space-between" style="margin-top:8px">
+            <span class="price">${formatCurrency(p.price, p.currency)}</span>
+            <div class="flex">
+              <a class="btn" href="./product.html?id=${p.id}">View</a>
+              <button class="btn accent" data-id="${p.id}">Add</button>
+            </div>
+          </div>
+        </div>`;
+      grid.appendChild(el);
+    });
+
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-id]');
+      if(!btn) return;
+      addToCart(parseInt(btn.dataset.id), 1);
+      btn.textContent = "Added ✓";
+      setTimeout(()=> btn.textContent="Add", 900);
+    });
+  </script>
+</body>
+</html>

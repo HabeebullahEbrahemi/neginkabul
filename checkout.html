@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    import { cartWithDetails, clearCart, formatCurrency } from './js/store.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader() + `
+      <section class="container section">
+        <h2>Checkout</h2>
+        <div id="summary"></div>
+        <h3 style="margin-top:16px">Your Details</h3>
+        <form id="form">
+          <div class="grid" style="grid-template-columns:1fr 1fr">
+            <div>
+              <label>Full Name</label>
+              <input required class="input" name="name" placeholder="e.g. Ahmad Hamid">
+            </div>
+            <div>
+              <label>Email</label>
+              <input required type="email" class="input" name="email" placeholder="you@example.com">
+            </div>
+            <div style="grid-column:1/-1">
+              <label>Address</label>
+              <input required class="input" name="address" placeholder="Street, City, Country">
+            </div>
+          </div>
+          <button class="btn accent" style="margin-top:12px">Place Order</button>
+        </form>
+      </section>
+    ` + renderFooter();
+
+    async function renderSummary(){
+      const items = await cartWithDetails();
+      const wrap = document.getElementById('summary');
+      if(items.length === 0){
+        wrap.innerHTML = '<div class="empty">Your cart is empty. <a href="./products.html" class="btn" style="margin-left:8px">Shop</a></div>';
+        document.getElementById('form').style.display='none';
+        return;
+      }
+      const total = items.reduce((s,i)=> s+i.lineTotal, 0);
+      wrap.innerHTML = `
+        <div class="card p">
+          ${items.map(i => `<div class="space-between"><span>${i.name} x ${i.qty}</span><span>${formatCurrency(i.lineTotal,i.currency)}</span></div>`).join('')}
+          <hr style="margin:10px 0; border: none; height:1px; background:#e2e8f0">
+          <div class="space-between total"><span>Total</span><span>${formatCurrency(total)}</span></div>
+        </div>`;
+    }
+    renderSummary();
+
+    document.getElementById('form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // Simulate order placement and redirect to thank you page with a simple order id
+      const orderId = Math.floor(Math.random()*1e6);
+      clearCart();
+      const params = new URLSearchParams({orderId});
+      location.href = "./thankyou.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>

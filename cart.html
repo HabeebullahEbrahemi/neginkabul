@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart — neginKabul</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { renderHeader, renderFooter } from './js/layout.js';
+    import { cartWithDetails, updateQty, removeFromCart, formatCurrency, getCart } from './js/store.js';
+    const app = document.getElementById('app');
+    app.innerHTML = renderHeader() + `<section class="container section"><h2>Your Cart</h2><div id="cart"></div></section>` + renderFooter();
+
+    async function render(){
+      const items = await cartWithDetails();
+      const wrap = document.getElementById('cart');
+      if(items.length === 0){
+        wrap.innerHTML = '<div class="empty">Your cart is empty. <a class="btn" href="./products.html" style="margin-left:8px">Shop Now</a></div>';
+        return;
+      }
+      const total = items.reduce((s,i)=> s+i.lineTotal, 0);
+      wrap.innerHTML = `
+        <table class="table">
+          <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr></thead>
+          <tbody>
+            ${items.map(i => `
+              <tr>
+                <td class="flex"><img src="${i.image}" alt="${i.name}" style="width:60px;height:40px;object-fit:cover;border-radius:8px"> ${i.name}</td>
+                <td>${formatCurrency(i.price, i.currency)}</td>
+                <td><input type="number" min="1" value="${i.qty}" data-id="${i.id}" class="input" style="width:80px"></td>
+                <td>${formatCurrency(i.lineTotal, i.currency)}</td>
+                <td><button class="btn danger" data-remove="${i.id}">Remove</button></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+        <div class="space-between" style="margin-top:12px">
+          <div class="total">Total: ${formatCurrency(total)}</div>
+          <a href="./checkout.html" class="btn accent">Checkout</a>
+        </div>
+      `;
+    }
+    render();
+
+    document.addEventListener('change', (e)=>{
+      const inp = e.target.closest('input[type="number"][data-id]');
+      if(!inp) return;
+      updateQty(parseInt(inp.dataset.id), parseInt(inp.value)||1);
+      render();
+    });
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-remove]');
+      if(!btn) return;
+      removeFromCart(parseInt(btn.dataset.remove));
+      render();
+    });
+  </script>
+</body>
+</html>
