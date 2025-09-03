@@ -78,5 +78,25 @@
     "image": "assets/pistachios.jpg",
     "category": "Gourmet",
     "description": "Crisp, fresh pistachios sourced from Afghan orchards."
+  },
+    {
+    "id": 9,
+    "name": "Pistachios (500g)",
+    "price": 14.75,
+    "currency": "USD",
+    "stock": 50,
+    "image": "assets/pistachios.jpg",
+    "category": "Gourmet",
+    "description": "Crisp, fresh pistachios sourced from Afghan orchards."
+  },
+  {
+    "id": 10,
+    "name": "Blue Lapis Necklace",
+    "price": 79.0,
+    "currency": "USD",
+    "stock": 15,
+    "image": "assets/lapis.jpg",
+    "category": "Jewelry",
+    "description": "Handcrafted necklace featuring Afghan Lapis Lazuli stones."
   }
 ]
